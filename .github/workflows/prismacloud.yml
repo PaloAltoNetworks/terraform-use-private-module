@@ -19,6 +19,7 @@ jobs:
         run: |
           git config --local --remove-section http."https://github.com/"
           git config --global url."https://oauth2:${GH_TOKEN}@github.com".insteadOf https://github.com
+          export LOG_LEVEL=DEBUG
         env:
           GH_TOKEN: ${{ secrets.MYSECRET }}
         

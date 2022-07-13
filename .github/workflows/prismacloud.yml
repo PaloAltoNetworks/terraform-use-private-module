@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --local --remove-section http."https://github.com/"
           git config --global url."https://git:${GH_TOKEN}@github.com/SimOnPanw".insteadOf "https://github.com/SimOnPanw"
-          
+          git config --global user.name simonpanw          
         env:
           GH_TOKEN: ${{ secrets.MYSECRET }}
         
@@ -39,10 +39,11 @@ jobs:
         env:
           PRISMA_API_URL: https://api.prismacloud.io
           GITHUB_PAT: ${{ secrets.MYSECRET }}
+          GITHUB_TOKEN: ${{ secrets.MYSECRET }}
         with:
           directory: .
           framework: terraform 
-          api-key: ${{ secrets.GITHUB_PAT }}
+          api-key: ${{ secrets.IAC_SCANNING }}
           output_format: cli
           soft_fail: true
           quiet: false

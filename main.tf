@@ -1,3 +1,3 @@
 module "site-deploy" {
-  source = "github.com/SimOnPanw/terraform-private-module"
+  source = "github.com/SimOnPanw/terraform-private-module//site-deploy?ref=main"
 }

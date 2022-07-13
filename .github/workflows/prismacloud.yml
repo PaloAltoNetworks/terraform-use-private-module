@@ -15,7 +15,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
         
-      - run: |
+      - name: Set global git configs
+        run: |
           git config --local --remove-section http."https://github.com/"
           git config --global url."https://oauth2:${GH_TOKEN}@github.com".insteadOf https://github.com
         env:

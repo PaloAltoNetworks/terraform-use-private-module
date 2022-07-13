@@ -18,20 +18,20 @@ jobs:
       - name: Set global git configs
         run: |
           git config --local --remove-section http."https://github.com/"
-          git config --global url."https://oauth2:${GH_TOKEN}@github.com".insteadOf https://github.com
+          git config --global url."https://git:${GH_TOKEN}@github.com/SimOnPanw".insteadOf "https://github.com/SimOnPanw"
           
         env:
           GH_TOKEN: ${{ secrets.MYSECRET }}
         
-      # - name: Setup Terraform
-      #   uses: hashicorp/setup-terraform@v1
-      #   with:
-      #     # terraform_version: 0.13.0:
-      #     cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
           
-      # - name: Terraform Init
-      #   id: init
-      #   run: terraform init
+      - name: Terraform Init
+        id: init
+        run: terraform init
 
       - name: Run Prisma Scan - Bridgecrew
         id: Bridgecrew
@@ -39,8 +39,6 @@ jobs:
         env:
           #PRISMA_API_URL: https://api.eu.prismacloud.io
           GITHUB_PAT: ${{ secrets.MYSECRET }}
-          GITHUB_TOKEN: ${{ secrets.MYSECRET }}
-          BITBUCKET_TOKEN: ${{ secrets.MYSECRET }}
         with:
           directory: .
           framework: terraform 

@@ -15,28 +15,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
         
-      # - run: |
-      #     git config --local --remove-section http."https://github.com/"
-      #     git config --global url."https://oauth2:${GH_TOKEN}@github.com".insteadOf https://github.com
-      #   env:
-      #     GH_TOKEN: ${{ secrets.MYSECRET }}
-        
-      # - name: Setup Terraform
-      #   uses: hashicorp/setup-terraform@v1
-      #   with:
-      #     # terraform_version: 0.13.0:
-      #     cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-          
-      # - name: Terraform Init
-      #   id: init
-      #   run: terraform init
-
-      
-      - name: Show ENV
-        run: |
-          env
+      - run: |
+          git config --local --remove-section http."https://github.com/"
+          git config --global url."https://oauth2:${GH_TOKEN}@github.com".insteadOf https://github.com
         env:
-          GITHUB_PAT: ${{ secrets.MYSECRET }}
+          GH_TOKEN: ${{ secrets.MYSECRET }}
+        
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          
+      - name: Terraform Init
+        id: init
+        run: terraform init
 
       - name: Run Prisma Scan - Bridgecrew
         id: Bridgecrew
@@ -51,17 +44,3 @@ jobs:
           #api-key: ${{ secrets.IAC_SCANNING }}
           soft_fail: true
           download_external_modules: true
-      
-      - name: Prisma - Generate SARIF report
-        uses: actions/upload-artifact@v2
-        with:
-          name: SARIF results
-          path: results.sarif
-          
-      - name: Prisma - Inspect action SARIF report
-        run: cat results.sarif
-              
-      - name: Prisma - Upload SARIF report
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: results.sarif

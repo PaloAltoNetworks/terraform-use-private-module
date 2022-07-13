@@ -37,12 +37,12 @@ jobs:
         id: Bridgecrew
         uses: bridgecrewio/bridgecrew-action@master 
         env:
-          #PRISMA_API_URL: https://api.eu.prismacloud.io
+          PRISMA_API_URL: https://api.prismacloud.io
           GITHUB_PAT: ${{ secrets.MYSECRET }}
         with:
           directory: .
           framework: terraform 
-          #api-key: ${{ secrets.IAC_SCANNING }}
+          api-key: ${{ secrets.GITHUB_PAT }}
           output_format: cli
           soft_fail: true
           quiet: false

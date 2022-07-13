@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --local --remove-section http."https://github.com/"
           git config --global url."https://oauth2:${GH_TOKEN}@github.com".insteadOf https://github.com
-          export LOG_LEVEL=DEBUG
+          
         env:
           GH_TOKEN: ${{ secrets.MYSECRET }}
         
@@ -40,6 +40,7 @@ jobs:
           #PRISMA_API_URL: https://api.eu.prismacloud.io
           GITHUB_PAT: ${{ secrets.MYSECRET }}
           GITHUB_TOKEN: ${{ secrets.MYSECRET }}
+          BITBUCKET_TOKEN: ${{ secrets.MYSECRET }}
         with:
           directory: .
           framework: terraform 

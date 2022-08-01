@@ -1,7 +1,7 @@
 module "site-deploy" {
-  source = "github.com/SimOnPanw/terraform-private-module//static-website/?ref=main"
+  source = "git::https://github.com/SimOnPanw/terraform-private-module.git//static-website/site-deploy?ref=main"
 
-  bucket_name = "smelotte-depoy-statuc-website"
+  bucket_name = "smelotte-depoy-static-website"
 
   tags = {
     Terraform   = "true"

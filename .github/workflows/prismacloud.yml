@@ -39,13 +39,11 @@ jobs:
         env:
           PRISMA_API_URL: https://api.prismacloud.io
           GITHUB_PAT: ${{ secrets.MYSECRET }}
-          GITHUB_TOKEN: ${{ secrets.MYSECRET }}
         with:
           directory: .
-          framework: terraform 
           api-key: ${{ secrets.IAC_SCANNING }}
           output_format: cli
-          soft_fail: true
+          soft_fail: false
           quiet: false
           download_external_modules: true
           log_level: DEBUG 

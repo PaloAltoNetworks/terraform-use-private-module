@@ -47,3 +47,4 @@ jobs:
           soft_fail: false
           quiet: false
           download_external_modules: true
+          log-level: DEBUG

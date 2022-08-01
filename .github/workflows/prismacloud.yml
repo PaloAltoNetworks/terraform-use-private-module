@@ -41,9 +41,9 @@ jobs:
           GITHUB_PAT: ${{ secrets.MYSECRET }}
         with:
           directory: .
+          framework: terraform
           api-key: ${{ secrets.IAC_SCANNING }}
           output_format: cli
           soft_fail: false
           quiet: false
           download_external_modules: true
-          log_level: DEBUG 

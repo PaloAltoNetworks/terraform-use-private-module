@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Prisma Scan - Bridgecrew
         id: Bridgecrew
-        # uses: bridgecrewio/checkov-action@master
+        ## uses: bridgecrewio/checkov-action@master
         uses: bridgecrewio/bridgecrew-action@master 
         env:
           PRISMA_API_URL: https://api.prismacloud.io

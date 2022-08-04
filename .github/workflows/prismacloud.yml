@@ -35,8 +35,8 @@ jobs:
 
       - name: Run Prisma Scan - Bridgecrew
         id: Bridgecrew
-        uses: bridgecrewio/checkov-action@master
-        # uses: bridgecrewio/bridgecrew-action@master 
+        # uses: bridgecrewio/checkov-action@master
+        uses: bridgecrewio/bridgecrew-action@master 
         env:
           PRISMA_API_URL: https://api.prismacloud.io
           GITHUB_PAT: ${{ secrets.MYSECRET }}
@@ -46,6 +46,5 @@ jobs:
           api-key: ${{ secrets.IAC_SCANNING }}
           output_format: cli
           soft_fail: false
-          quiet: false
+          quiet: true
           download_external_modules: true
-          log_level: DEBUG

@@ -48,3 +48,4 @@ jobs:
           soft_fail: false
           quiet: true
           download_external_modules: true
+          log_level: debug

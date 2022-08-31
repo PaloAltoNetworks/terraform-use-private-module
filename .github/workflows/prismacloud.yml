@@ -44,8 +44,22 @@ jobs:
           directory: .
           framework: terraform
           api-key: ${{ secrets.IAC_SCANNING }}
-          output_format: cli
+          output_format: sarif
           soft_fail: false
           quiet: true
           download_external_modules: true
           log_level: debug
+          
+      - name: Prisma - Generate SARIF report
+        uses: actions/upload-artifact@v2
+        with:
+          name: SARIF results
+          path: results.sarif
+
+      - name: Prisma - Inspect action SARIF report
+        run: cat results.sarif
+
+      - name: Prisma - Upload SARIF report
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results.sarif

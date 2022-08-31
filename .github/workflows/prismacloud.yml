@@ -45,7 +45,7 @@ jobs:
           framework: terraform
           api-key: ${{ secrets.IAC_SCANNING }}
           output_format: sarif
-          soft_fail: false
+          soft_fail: true
           quiet: true
           download_external_modules: true
           log_level: debug

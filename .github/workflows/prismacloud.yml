@@ -21,7 +21,7 @@ jobs:
           git config --global url."https://git:${GH_TOKEN}@github.com/PaloAltoNetworks".insteadOf "https://github.com/PaloAltoNetworks"
           git config --global user.name simonpanw          
         env:
-          GH_TOKEN: ${{ secrets.MYSECRET }}
+          GH_TOKEN: ${{ secrets.MY_GITHUB_PAT }}
         
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1

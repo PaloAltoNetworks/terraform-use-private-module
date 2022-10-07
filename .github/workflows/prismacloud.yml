@@ -59,7 +59,7 @@ jobs:
         run: cat results.sarif
 
       - name: Prisma - Change to HTTPS
-        run:  sed -i """s|.external_modules/|https://|g""" results.sarif
+        run:  sed -i """s|.external_modules/||g""" results.sarif
 
       - name: Prisma - Change to blob
         run:  sed -i """s|/HEAD/|/blob/main/|g""" results.sarif

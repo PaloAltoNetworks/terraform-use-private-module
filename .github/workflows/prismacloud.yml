@@ -59,10 +59,10 @@ jobs:
         run: cat results.sarif
 
       - name: Prisma - Change to HTTPS
-        run:  sed -i """s|.external_modules/|http://|g""" results.sarif
+        run:  sed -i """s|.external_modules/|https://|g""" results.sarif
 
       - name: Prisma - Change to blob
-        run:  sed -i """s|/HEAD/|blob/main/|g""" results.sarif
+        run:  sed -i """s|/HEAD/|/blob/main/|g""" results.sarif
 
       - name: Prisma - Fix Custom Policies typo
         run:  sed -i """s|please add the tag|https://docs.bridgecrew.io/docs/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached|g""" results.sarif

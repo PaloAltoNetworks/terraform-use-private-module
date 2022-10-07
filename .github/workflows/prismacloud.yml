@@ -49,11 +49,11 @@ jobs:
           download_external_modules: true
           log_level: debug
           
-      # - name: Prisma - Generate SARIF report
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: SARIF results
-      #     path: results.sarif
+      - name: Prisma - Generate SARIF report
+        uses: actions/upload-artifact@v2
+        with:
+          name: SARIF results
+          path: results.sarif
 
       - name: Prisma - Inspect action SARIF report
         run: cat results.sarif

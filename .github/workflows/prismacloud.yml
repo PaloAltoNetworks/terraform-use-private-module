@@ -58,7 +58,13 @@ jobs:
       - name: Prisma - Inspect action SARIF report
         run: cat results.sarif
 
-      - name: Prisma - Fix Checkov typo
+      - name: Prisma - Change to HTTPS
+        run:  sed -i """s|.external_modules/|http://|g""" results.sarif
+
+      - name: Prisma - Change to blob
+        run:  sed -i """s|/HEAD/|blob/main/|g""" results.sarif
+
+      - name: Prisma - Fix Custom Policies typo
         run:  sed -i """s|please add the tag|https://docs.bridgecrew.io/docs/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached|g""" results.sarif
 
       # - name: Prisma - Upload SARIF report
@@ -66,6 +72,8 @@ jobs:
       #   with:
       #     sarif_file: results.sarif
 
+      - name: Prisma - CAT AFTER
+        run: cat results.sarif
 
 
       - name: Upload SARIF file

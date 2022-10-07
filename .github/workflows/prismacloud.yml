@@ -58,10 +58,15 @@ jobs:
       - name: Prisma - Inspect action SARIF report
         run: cat results.sarif
 
+      - name: Prisma - Fix Checkov typo
+        run:  sed -i """s|please add the tag|https://docs.bridgecrew.io/docs/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached|g""" results.sarif
+
       # - name: Prisma - Upload SARIF report
       #   uses: github/codeql-action/upload-sarif@v2
       #   with:
       #     sarif_file: results.sarif
+
+
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2

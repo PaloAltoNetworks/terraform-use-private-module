@@ -25,6 +25,24 @@ jobs:
     steps:
       - name: Clone repo
         uses: actions/checkout@v3
+        
+      - name: Set global git configs
+        run: |
+          git config --local --remove-section http."https://github.com/"
+          git config --global url."https://git:${GH_TOKEN}@github.com/PaloAltoNetworks".insteadOf "https://github.com/PaloAltoNetworks"
+          git config --global user.name simonpanw          
+        env:
+          GH_TOKEN: ${{ secrets.MY_GITHUB_PAT }}
+        
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          
+      - name: Terraform Init
+        id: init
+        run: terraform init
 
       - name: Run tfsec
         uses: aquasecurity/tfsec-sarif-action@9a83b5c3524f825c020e356335855741fd02745f

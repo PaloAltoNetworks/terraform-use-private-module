@@ -18,7 +18,7 @@ jobs:
       - name: Set global git configs
         run: |
           git config --local --remove-section http."https://github.com/"
-          git config --global url."https://git:${GH_TOKEN}@github.com/SimOnPanw".insteadOf "https://github.com/SimOnPanw"
+          git config --global url."https://git:${GH_TOKEN}@github.com/PaloAltoNetworks".insteadOf "https://github.com/PaloAltoNetworks"
           git config --global user.name simonpanw          
         env:
           GH_TOKEN: ${{ secrets.MYSECRET }}
@@ -37,8 +37,8 @@ jobs:
         id: Bridgecrew
         uses: bridgecrewio/checkov-action@master
         env:
-          PRISMA_API_URL: https://api.prismacloud.io
-          GITHUB_PAT: ${{ secrets.MYSECRET }}
+          PRISMA_API_URL: https://api2.eu.prismacloud.io
+          GITHUB_PAT: ${{ secrets.MY_GITHUB_PAT }}
         with:
           directory: .
           framework: terraform

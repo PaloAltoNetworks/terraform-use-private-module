@@ -13,7 +13,7 @@ jobs:
     name: Run Prisma Cloud IaC Scan to check 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
         
       - name: Set global git configs
         run: |
@@ -24,7 +24,7 @@ jobs:
           GH_TOKEN: ${{ secrets.MY_GITHUB_PAT }}
         
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@ed3a0531877aca392eb870f440d9ae7aba83a6bd # v1
         with:
           # terraform_version: 0.13.0:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -50,7 +50,7 @@ jobs:
           log_level: debug
           
       - name: Prisma - Generate SARIF report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
         with:
           name: SARIF results
           path: results.sarif
